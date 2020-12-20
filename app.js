@@ -33,8 +33,6 @@ app.get("/articles", function(req, res){
 
 
 app.post("/articles", function(req, res){
-  console.log();
-  console.log();
   const newArticle = new Article({
     title : req.body.title,
     content : req.body.content
@@ -46,7 +44,17 @@ app.post("/articles", function(req, res){
       res.send(err);
     }
   });
-})
+});
+
+app.delete("/articles", function(req, res){
+  Article.deleteMany(function(err){
+    if(!err){
+      res.send("Successfully deleted all the articles");
+    } else {
+      res.send(err);
+    }
+  });
+});
 
 
 
